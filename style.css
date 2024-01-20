@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap'); /* Lato */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap'); /* Open Sans */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Color variables */
+:root {
+    --sidebarBg: #F2F2F2;
+    --sidebarHover: #eaeaea;
+    --white: #FFF;
+    --black: #222;
+    --circle: #E3E3E3;
+    --text: #535353;
+    --stroke: #C7C7C7;
+    --input: #6B6B6B;
+}
+
+body {
+    display: flex;
+}
+
+
+/* Sidebar */
+.sidebar {
+    position: relative;
+    background: var(--sidebarBg);
+    width: 340px;
+    height: 100vh;
+    padding: 30px;
+}
+
+/* Sidebar heading */
+.sidebar .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar .heading h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 1.4em;
+    color: var(--black);
+}
+.sidebar .sidebar-hamburger {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: var(--black);
+}
+
+/* Sidebar search-bar */
+.sidebar .search-bar {
+    margin-top: 24px;
+    position: relative;
+}
+.sidebar .search-bar i {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    color: var(--input);
+    font-size: 0.9em;
+}
+.sidebar .search-bar input {
+    width: 100%;
+    height: 42px;
+    border-radius: 7px;
+    border: 1px solid var(--stroke);
+    background: var(--sidebarBg);
+    outline: none;
+    padding-left: 40px;
+    font-size: 1em;
+    color: var(--input);
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Sidebar lists */
+.sidebar .lists,
+.sidebar .tasks-ctg {
+    margin-top: 34px;
+}
+.sidebar .lists h3,
+.sidebar .tasks-ctg h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: var(--black);
+}
+.sidebar .lists .list,
+.sidebar .tasks-ctg .task-ctg {
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 5px;
+}
+.sidebar .lists .list:hover,
+.sidebar .tasks-ctg .task-ctg:hover {
+    background: var(--sidebarHover);
+}
+.sidebar .lists .list:hover .list-name,
+.sidebar .tasks-ctg .task-ctg:hover .task-ctg-name {
+    font-weight: 600;
+}
+.sidebar .lists .list:hover .list-quantity,
+.sidebar .tasks-ctg .task-ctg:hover .task-ctg-quantity {
+    background: var(--white);
+}
+.sidebar .lists .list .list-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background: #ff3c3c;
+    margin-right: 11px;
+}
+.sidebar .lists .list .list-name,
+.sidebar .tasks-ctg .task-ctg-name {
+    font-size: 1em;
+    color: var(--text);
+}
+.sidebar .lists .list .list-quantity,
+.sidebar .tasks-ctg .task-ctg-quantity {
+    position: absolute;
+    right: 12px;
+    width: 40px;
+    line-height: 21px;
+    text-align: center;
+    height: 21px;
+    background: var(--circle);
+    border-radius: 4px;
+    color: var(--black);
+    font-size: 0.8em;
+    font-weight: 500;
+}
+.sidebar .lists .add-new-list-btn {
+    margin-top: 14px;
+    border: none;
+    outline: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--input);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0 14px;
+}
+.sidebar .lists .add-new-list-btn i {
+    font-size: 1.7em;
+}
+
+
+/* Sidebar tasks */
+.sidebar .tasks-ctg .task-ctg .icon {
+    margin-right: 11px;
+    color: var(--input);
+}
+
+/* Footer */
+.sidebar .footer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    padding: 0 30px;
+    width: 100%;
+}
+.sidebar .footer button {
+    text-align: left;
+    background: none;
+    outline: none;
+    border: none;
+    color: var(--text);
+    font-size: 1em;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 5px;
+}
+.sidebar .footer button i {
+    margin-right: 7px;
+}
+.sidebar .footer button:hover {
+    background: var(--sidebarHover);
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+/* Main, tasks-area */
+.tasks-area {
+    padding: 30px;
+    width: 110vh;
+    background: var(--white);
+    position: relative;
+}
+.tasks-area .heading h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 2.7em;
+}
+.tasks-area .heading .date {
+    margin-top: 10px;
+    color: var(--input);
+    font-family: 'Open Sans', sans-serif;
+}
+.tasks-area .tasks {
+    position: relative;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+.tasks-area .task .short {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.tasks-area .tasks .task {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.tasks-area .tasks .task label {
+    display: flex;
+    align-items: center;
+    color: var(--text);
+}
+.tasks-area .tasks .task label input {
+    width: 17px;
+    height: 17px;
+    margin-right: 9px;
+}
+.tasks-area .tasks .task .task-name {
+    color: var(--text);
+    margin-left: 7px;
+}
+.tasks-area .tasks .task .view-more-btn {
+    position: absolute;
+    right: 0;
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 1.1em;
+    color: var(--input);
+    cursor: pointer;
+}
+/* Tasks-area, tasks, task, view-more */
+.tasks-area .tasks .view-more {
+    margin-top: 18px;
+}
+
+
+
+
+
+
+/* Task-form */
+.task-form {
+    padding: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    background: var(--sidebarBg);
+}
+.task-form .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--black);
+}
+.task-form .heading h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 1.3em;
+}
+.task-form .heading .close-taskform-btn {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.6em;
+    color: var(--black);
+    cursor: pointer;
+}
+/* Task-form, Form */
+.task-form .form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.task-form .form input[type="text"],
+.task-form .form textarea {
+    height: 46px;
+    width: 100%;
+    font-size: 0.93em;
+    border-radius: 7px;
+    padding: 16px;
+    outline: none;
+    background: var(--sidebarBg);
+    border: 1px solid var(--stroke);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--input);
+}
+.task-form .form textarea {
+    height: 210px;
+    resize: none;
+}
+/* Task-form, form, options */
+.task-form .options {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: 'Open Sans', sans-serif;
+}
+.task-form .options .option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.task-form .options .option h3 {
+    font-weight: 600;
+    font-size: 1em;
+}
+.task-form .options .option input[type="date"] {
+    height: 32px;
+    font-size: 0.93em;
+    border-radius: 4px;
+    padding: 10px;
+    outline: none;
+    background: var(--circle);
+    border: 1px solid var(--stroke);
+    color: var(--input);
+}
+.task-form .options .option select {
+    height: max-content;
+    font-size: 0.93em;
+    border-radius: 4px;
+    padding: 4px;
+    outline: none;
+    background: var(--circle);
+    border: 1px solid var(--stroke);
+    color: var(--input);
+}
+/* Task-form, form, subtasks */
+.task-form .subtasks {
+    margin-top: 30px;
+}
+.task-form .subtasks h2 {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+}
+.task-form .add-subtask {
+    margin-top: 11px;
+    position: relative;
+}
+.task-form .add-subtask i {
+    position: absolute;
+    top: 16px;
+    left: 14px;
+    color: var(--input);
+    font-size: 1em;
+}
+.task-form .add-subtask input {
+    padding-left: 38px !important;
+}
+/* task-form, buttons */
+.task-form .buttons {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    bottom: 30px;
+    left: 0;
+    padding: 0 30px;
+    width: 100%;
+}
+.task-form .buttons button {
+    text-align: left;
+    background: none;
+    outline: none;
+    border: 1px solid var(--stroke);
+    color: var(--text);
+    font-size: 1em;
+    cursor: pointer;
+    padding: 11px 45px;
+    border-radius: 3px;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    transition: .2s ease;
+}
+.task-form .buttons button:nth-child(2) {
+    border: none;
+    background: #ffa127;
+    color: var(--white);
+}
+.task-form .buttons button:nth-child(2):hover {
+    background: #ff9812;
+}
+.task-form .buttons button:nth-child(1):hover {
+    background: var(--circle);
+}

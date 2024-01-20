@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Advanced To-Do App</title>
+</head>
+<body>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="heading"><h2>Menu</h2> <button class="sidebar-hamburger"><i class="fa-solid fa-bars"></i></button></div>
+        <div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i> <input type="text" placeholder="Search"></div>
+
+        <!-- Lists -->
+        <div class="lists">
+            <h3>Lists</h3>
+            <div class="list">
+                <div class="list-color"></div>
+                <div class="list-name">Personal</div>
+                <div class="list-quantity">3</div>
+            </div>
+            <div class="list">
+                <div class="list-color" style="background: #7676ff"></div>
+                <div class="list-name">Work</div>
+                <div class="list-quantity">6</div>
+            </div>
+            <div class="list">
+                <div class="list-color" style="background: #7eff64"></div>
+                <div class="list-name">Lifestyle</div>
+                <div class="list-quantity">7</div>
+            </div>
+            <button class="add-new-list-btn"><i class="fa-solid fa-plus"></i> Add New List</button>
+        </div>
+
+        <!-- Tasks -->
+        <div class="tasks-ctg">
+            <h3>Tasks</h3>
+            <div class="task-ctg">
+                <div class="icon"><i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="task-ctg-name">Upcoming</div>
+                <div class="task-ctg-quantity">9</div>
+            </div>
+            <div class="task-ctg">
+                <div class="icon"><i class="fa-solid fa-calendar"></i></div>
+                <div class="task-ctg-name">Today</div>
+                <div class="task-ctg-quantity">11</div>
+            </div>
+            <div class="task-ctg">
+                <div class="icon"><i class="fa-solid fa-note-sticky"></i></div>
+                <div class="task-ctg-name">Sticky wall</div>
+            </div>
+        </div>
+
+        <!-- Sidebar footer -->
+        <div class="footer">
+            <button><i class="fa-solid fa-gear"></i> Settings</button>
+            <button><i class="fa-solid fa-right-from-bracket"></i> Sign out</button>
+        </div>
+    </aside>
+
+    <!-- Tasks area -->
+    <main>
+        <div class="tasks-area">
+            <div class="heading">
+                <h1>Today</h1>
+                <p class="date">Saturday, 20.01.2024</p>
+            </div>
+
+            <div class="tasks">
+                <div class="task">
+                    <div class="short">
+                        <label><input type="checkbox" name="checkbox" value="value">Clean a house</label>
+                        <button class="view-more-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="view-more">
+                        <div class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus vero tenetur asperiores impedit vitae. Nemo ex optio, saepe nostrum cupiditate esse culpa corrupti dolorum velit, eveniet recusandae dicta facere doloribus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis eius amet consequatur itaque perferendis id, aliquam similique explicabo? Totam nobis blanditiis, quos qui reiciendis minima?</div>
+                        <div class="task-info">
+                            <div class="list"><div class="color"> Personal</div></div>
+                            <div class="subtasks"></div>
+                            <div class="date"></div>
+                            <div class="settings"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Task form -->
+    <div class="task-form">
+        <div class="heading"><h2>Add New Task:</h2> <button class="close-taskform-btn"><i class="fa-solid fa-xmark"></i></button></div>
+        
+        <div class="form">
+            <input type="text" placeholder="Title" class="title">
+            <textarea class="description" placeholder="Description"></textarea>
+            
+            <div class="options">
+                <div class="option">
+                    <h3>List</h3> 
+                    <select>
+                        <option>Personal</option>
+                        <option>Work</option>
+                        <option>Lifestyle</option>
+                    </select>
+                </div>
+                <div class="option"><h3>Due Date</h3> <input type="date"></div>
+            </div>
+
+            <div class="subtasks">
+                <h2>Subtasks:</h2>
+                <div class="add-subtask"><i class="fa-solid fa-plus"></i> <input type="text" placeholder="Add New Subtask"></div>
+            </div>
+
+            <div class="buttons">
+                <button>Cancel</button>
+                <button>Add Task</button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <script src="app.js"></script>
+</body>
+</html>
