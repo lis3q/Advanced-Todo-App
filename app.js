@@ -14,17 +14,6 @@ cancelBtn.addEventListener("click", () => {
     clearInputFields();
 })
 
-// Viewing more function
-const viewMore = () => {
-    const viewMoreBtn = document.querySelectorAll(".view-more-btn");
-    viewMoreBtn.forEach(viewMore => {
-        let div = viewMore.parentElement.nextElementSibling;
-        viewMore.addEventListener("click", () => {
-            div.classList.toggle("hidden");
-        })
-    })
-}
-
 // Displaying today's date function
 const today = new Date();
 const longDay = new Date().toLocaleString('en-us', {  weekday: 'long' })
@@ -35,6 +24,17 @@ const todayDate = longDay + ", " + ("0" + shortDay).slice(-2) + "." + ("0" + mon
 const dateParagraph = document.querySelector(".tasks-area .date");
 dateParagraph.innerHTML = todayDate;
 
+
+// Viewing more function
+const viewMore = () => {
+    const viewMoreBtn = document.querySelectorAll(".view-more-btn");
+    viewMoreBtn.forEach(viewMore => {
+        let div = viewMore.parentElement.nextElementSibling;
+        viewMore.addEventListener("click", () => {
+            div.classList.toggle("hidden");
+        })
+    })
+}
 
 // Collecting data from the form
 const confirmTaskBtn = document.querySelector(".confirm-task-btn");
@@ -59,11 +59,6 @@ confirmTaskBtn.addEventListener("click", () => {
     
             <div class="view-more">
                 <div class="description">${description}</div>
-                <div class="subtasks-list">
-                    <ul>
-                        
-                    </ul>
-                </div>
                 <div class="task-info">
                     <div class="list"><div class="color"></div>${list}</div>
                     <div class="subtasks"><div class="list-quantity">${subtasks.length}</div> Subtasks</div>
@@ -71,8 +66,8 @@ confirmTaskBtn.addEventListener("click", () => {
                     <div class="settings">
                         <i class="fa-solid fa-ellipsis"></i>
                         <div class="settings-box">
-                            <div class="setting"><i class="fa-solid fa-pen-to-square"></i> Edit</div>
-                            <div class="setting"><i class="fa-solid fa-trash"></i> Delete</div>
+                            <div class="setting edit-task-btn"><i class="fa-solid fa-pen-to-square"></i> Edit</div>
+                            <div class="setting delete-task-btn"><i class="fa-solid fa-trash"></i> Delete</div>
                         </div>
                     </div>
                 </div>
@@ -82,7 +77,8 @@ confirmTaskBtn.addEventListener("click", () => {
         viewMore();
         clearInputFields();
         openTaskSettings();
-        addSubtaskToList();
+        cancelBtn();
+        deleteTask();
     }
 
 })
@@ -108,20 +104,17 @@ const openTaskSettings = () => {
 }
 
 // Adding subtasks to list
-const addSubtaskToList = () => {
-    let subtaskInput = document.querySelector(".add-subtask-input");
-    let subtasks = [];
-    subtaskInput.addEventListener("keyup", (ev) => {
-        if (ev.key === "Enter") {
-            let subtaskList = document.querySelector(".subtasks-list ul");
-            const subtask = subtaskInput.value;
-            subtaskList.innerHTML += `<li>${subtask}</li>`
-            subtasks.push(subtask);
-            document.querySelector(".add-subtask-input").value = "";
-        }
-    })
-}
-
+let subtaskInput = document.querySelector(".add-subtask-input");
+let subtasks = [];
+subtaskInput.addEventListener("keyup", (ev) => {
+    if (ev.key === "Enter") {
+        let subtaskList = document.querySelector(".subtasks-list ul");
+        const subtask = subtaskInput.value;
+        subtaskList.innerHTML += `<li>${subtask}</li>`
+        subtasks.push(subtask);
+        document.querySelector(".add-subtask-input").value = "";
+    }
+})
 
 let yourList = [];
 
@@ -157,7 +150,6 @@ addNewListBtn.addEventListener("click", () => {
     })
 })
 
-
 // Updating select list tag
 const updateListSelector = () => {
     const listSelector = document.querySelector(".listSelector");
@@ -167,3 +159,38 @@ const updateListSelector = () => {
         `
     }
 }
+
+// Removing task by clicking delete button
+const deleteTask = () => {
+    const deleteTaskBtn = document.querySelectorAll(".delete-task-btn");
+    deleteTaskBtn.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const task = btn.parentElement.parentElement.parentElement.parentElement.parentElement;
+            task.remove();
+        })
+    })
+}
+
+// Dark theme
+const darkthemeBtn = document.querySelector(".darktheme-btn");
+darkthemeBtn.addEventListener("click", () => {
+    document.documentElement.style.setProperty('--sidebarBg', '#1e262e');
+    document.documentElement.style.setProperty('--sidebarHover', '#303e4d');
+    document.documentElement.style.setProperty('--black', '#fff');
+    document.documentElement.style.setProperty('--white', '#293540');
+    document.documentElement.style.setProperty('--input', '#f2f2f2');
+    document.documentElement.style.setProperty('--text', '#cfd9e3');
+    document.documentElement.style.setProperty('--circle', '#3e4f5e');
+    document.documentElement.style.setProperty('--stroke', '#3e4f5e');
+    document.querySelector(".add-new-task-btn").style.color = "#fff";
+    document.querySelector(".confirm-task-btn").style.color = "#fff";
+
+})
+
+
+// Open mobilemenu 
+const mobileMenuBtn = document.querySelector(".mobileMenu");
+mobileMenuBtn.addEventListener("click", () => {
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.classList.add("active");
+})

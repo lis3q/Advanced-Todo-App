@@ -16,6 +16,7 @@
 body {
     display: flex;
     overflow: auto;
+    background: var(--white);
 }
 
 
@@ -226,17 +227,22 @@ body {
 .tasks-area {
     padding: 30px;
     width: 125vh;
+    min-height: 100vh;
     background: var(--white);
     position: relative;
+}
+.tasks-area .heading .mobileMenu {
+    display: none;
 }
 .tasks-area .heading h1 {
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     font-size: 2.7em;
+    color: var(--black);
 }
 .tasks-area .heading .date {
     margin-top: 10px;
-    color: var(--input);
+    color: var(--text);
     font-family: 'Open Sans', sans-serif;
 }
 .tasks-area .heading .add-new-task-btn {
@@ -423,7 +429,7 @@ body {
     transition: .3s ease-in-out;
 }
 .task-form.hidden {
-    transform: translateY(-1000px);
+    display: none;
 }
 .task-form .heading {
     display: flex;
@@ -480,6 +486,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--black);
 }
 .task-form .options .option h3 {
     font-weight: 600;
@@ -512,6 +519,7 @@ body {
 .task-form .subtasks h2 {
     font-family: 'Lato', sans-serif;
     font-size: 1.2em;
+    color: var(--black);
 }
 .task-form .add-subtask {
     margin-top: 11px;
@@ -533,6 +541,7 @@ body {
 .task-form .subtasks-list li {
     font-family: 'Open Sans' sans-serif;
     margin: 4px 0;
+    color: var(--black);
 }
 /* task-form, buttons */
 .task-form .buttons {
@@ -568,4 +577,57 @@ body {
 }
 .task-form .buttons button:nth-child(1):hover {
     background: var(--circle);
+}
+
+
+/* Responsibility */
+@media screen and (max-width: 680px) {
+    .sidebar {
+        position: absolute;
+        display: none;
+        z-index: 200;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+    .sidebar.active {
+        display: block;
+    }
+    .tasks-area {
+        width: 100vw;
+    }
+    .tasks-area .heading {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+    }
+    .tasks-area .heading .date {
+        display: none;
+    }
+    .tasks-area .heading .mobileMenu {
+        display: block;
+    }
+    .tasks-area .heading h1 {
+        text-align: center;
+    }
+    .tasks-area .heading .add-new-task-btn {
+        position: fixed;
+        bottom: 5%;
+        left: 50%;
+        transform: translate(-50%, -5%);
+        width: 170px;
+    }
+    .tasks-area .view-more .task-info {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .task-form {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
 }
