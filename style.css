@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap'); /* Lato */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap'); /* Open Sans */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 /* Color variables */
 :root {
     --sidebarBg: #F2F2F2;
@@ -16,12 +15,15 @@
 
 body {
     display: flex;
+    overflow: auto;
 }
 
 
 /* Sidebar */
 .sidebar {
-    position: relative;
+    position: sticky;
+    top: 0;
+    left: 0;
     background: var(--sidebarBg);
     width: 340px;
     height: 100vh;
@@ -97,6 +99,31 @@ body {
     padding: 10px 14px;
     border-radius: 5px;
 }
+.sidebar .add-new-list-popup {
+    padding: 10px 14px;
+    display: none;
+    align-items: center;
+}
+.sidebar .add-new-list-popup.active {
+    display: flex;
+}
+.sidebar .add-new-list-popup input[type="color"] {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    outline: none;
+    margin-right: 11px;
+}
+.sidebar .add-new-list-popup input[type="text"] {
+    width: 100%;
+    height: 26px;
+    background: var(--circle);
+    border: 1px solid var(--stroke);
+    outline: none;
+    color: var(--input);
+    padding: 0 7px;
+}
 .sidebar .lists .list:hover,
 .sidebar .tasks-ctg .task-ctg:hover {
     background: var(--sidebarHover);
@@ -135,7 +162,7 @@ body {
     font-size: 0.8em;
     font-weight: 500;
 }
-.sidebar .lists .add-new-list-btn {
+.sidebar .add-new-list-btn {
     margin-top: 14px;
     border: none;
     outline: none;
@@ -149,7 +176,7 @@ body {
     cursor: pointer;
     padding: 0 14px;
 }
-.sidebar .lists .add-new-list-btn i {
+.sidebar .add-new-list-btn i {
     font-size: 1.7em;
 }
 
@@ -198,7 +225,7 @@ body {
 /* Main, tasks-area */
 .tasks-area {
     padding: 30px;
-    width: 110vh;
+    width: 125vh;
     background: var(--white);
     position: relative;
 }
@@ -211,6 +238,26 @@ body {
     margin-top: 10px;
     color: var(--input);
     font-family: 'Open Sans', sans-serif;
+}
+.tasks-area .heading .add-new-task-btn {
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    background: #ffa127;
+    border-radius: 5px;
+    width: 30%;
+    height: 42px;
+    color: var(--white);
+    font-size: 1em;
+    transition: .2s ease;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.tasks-area .heading .add-new-task-btn:hover {
+    background: #ff9812;
 }
 .tasks-area .tasks {
     position: relative;
@@ -228,6 +275,9 @@ body {
 .tasks-area .tasks .task {
     display: flex;
     flex-direction: column;
+    margin: 2px 0;
+    border-top: 1px solid var(--circle);
+    padding-top: 15px;
     width: 100%;
 }
 .tasks-area .tasks .task label {
@@ -250,13 +300,110 @@ body {
     outline: none;
     border: none;
     background: none;
-    font-size: 1.1em;
-    color: var(--input);
+    font-size: 1em;
+    color: var(--text);
     cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.tasks-area .tasks .task .view-more-btn:hover {
+    background: var(--sidebarHover);
 }
 /* Tasks-area, tasks, task, view-more */
 .tasks-area .tasks .view-more {
     margin-top: 18px;
+}
+.tasks-area .tasks .view-more.hidden {
+    display: none;
+}
+.tasks-area .tasks .view-more .description {
+    color: var(--text);
+    text-align: justify;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9em;
+}
+.tasks-area .view-more .task-info {
+    margin: 30px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* tasks-area, settings */
+.tasks-area .task-info .settings {
+    color: var(--black);
+    cursor: pointer;
+    font-size: 1.1em;
+    position: relative;
+}
+.tasks-area .view-more .task-info .settings-box {
+    display: none;
+    right: 0;
+    top: 28px;
+    position: absolute;
+    background: var(--white);
+    box-shadow: 0 0 12px 3px #0000000e;
+    border-radius: 7px;
+    width: max-content;
+    z-index: 100;
+}
+.tasks-area .view-more .task-info .settings-box.active {
+    display: block;
+}
+.tasks-area .view-more .task-info .settings-box .setting {
+    padding: 10px 25px;
+}
+.tasks-area .view-more .task-info .settings-box .setting i {
+    margin-right: 6px;
+}
+.tasks-area .view-more .task-info .settings-box .setting:nth-child(1) {
+    border-radius: 7px 7px 0 0;
+}
+.tasks-area .view-more .task-info .settings-box .setting:nth-child(2) {
+    border-radius: 0 0 7px 7px;
+}
+.tasks-area .view-more .task-info .settings-box .setting {
+    color: var(--black);
+    font-size: 0.9em;
+}
+.tasks-area .view-more .task-info .settings-box .setting:hover {
+    background: var(--sidebarHover);
+}
+.tasks-area .task-info .list {
+    display: flex;
+    align-items: center;
+    color: var(--input);
+}
+.tasks-area .task-info .list .color {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background: #ff3c3c;
+    margin-right: 11px;
+}
+.tasks-area .task-info .subtasks {
+    display: flex;
+    align-items: center;
+    color: var(--input);
+}
+.tasks-area .task-info .subtasks .list-quantity {
+    width: 40px;
+    height: 21px;
+    background: var(--circle);
+    border-radius: 4px;
+    color: var(--black);
+    font-size: 0.8em;
+    font-weight: 500;
+    text-align: center;
+    line-height: 21px;
+    margin-right: 11px;
+}
+.tasks-area .task-info .date {
+    color: var(--input);
+}
+.tasks-area .task-info .date i {
+    color: #ffa127;
+    font-size: 1.2em;
+    margin-right: 3px;
 }
 
 
@@ -267,12 +414,16 @@ body {
 /* Task-form */
 .task-form {
     padding: 30px;
-    position: absolute;
-    right: 0;
+    position: sticky;
     top: 0;
+    right: 0;
     width: 400px;
     height: 100vh;
     background: var(--sidebarBg);
+    transition: .3s ease-in-out;
+}
+.task-form.hidden {
+    transform: translateY(-1000px);
 }
 .task-form .heading {
     display: flex;
@@ -375,6 +526,13 @@ body {
 }
 .task-form .add-subtask input {
     padding-left: 38px !important;
+}
+.task-form .subtasks-list {
+    margin: 30px;
+}
+.task-form .subtasks-list li {
+    font-family: 'Open Sans' sans-serif;
+    margin: 4px 0;
 }
 /* task-form, buttons */
 .task-form .buttons {

@@ -20,20 +20,21 @@
             <div class="list">
                 <div class="list-color"></div>
                 <div class="list-name">Personal</div>
-                <div class="list-quantity">3</div>
+                <div class="list-quantity">0</div>
             </div>
             <div class="list">
                 <div class="list-color" style="background: #7676ff"></div>
                 <div class="list-name">Work</div>
-                <div class="list-quantity">6</div>
+                <div class="list-quantity">0</div>
             </div>
             <div class="list">
                 <div class="list-color" style="background: #7eff64"></div>
                 <div class="list-name">Lifestyle</div>
-                <div class="list-quantity">7</div>
+                <div class="list-quantity">0</div>
             </div>
-            <button class="add-new-list-btn"><i class="fa-solid fa-plus"></i> Add New List</button>
         </div>
+        <div class="add-new-list-popup"><input type="color" class="colorSelector"><input type="text" class="listnameSelector"></div>
+        <button class="add-new-list-btn"><i class="fa-solid fa-plus"></i> Add New List</button>
 
         <!-- Tasks -->
         <div class="tasks-ctg">
@@ -41,12 +42,12 @@
             <div class="task-ctg">
                 <div class="icon"><i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></div>
                 <div class="task-ctg-name">Upcoming</div>
-                <div class="task-ctg-quantity">9</div>
+                <div class="task-ctg-quantity">0</div>
             </div>
             <div class="task-ctg">
                 <div class="icon"><i class="fa-solid fa-calendar"></i></div>
                 <div class="task-ctg-name">Today</div>
-                <div class="task-ctg-quantity">11</div>
+                <div class="task-ctg-quantity">0</div>
             </div>
             <div class="task-ctg">
                 <div class="icon"><i class="fa-solid fa-note-sticky"></i></div>
@@ -67,10 +68,11 @@
             <div class="heading">
                 <h1>Today</h1>
                 <p class="date">Saturday, 20.01.2024</p>
+                <button class="add-new-task-btn"><i class="fa-solid fa-plus"></i> Add New Task</button>
             </div>
 
             <div class="tasks">
-                <div class="task">
+                <!-- <div class="task">
                     <div class="short">
                         <label><input type="checkbox" name="checkbox" value="value">Clean a house</label>
                         <button class="view-more-btn"><i class="fa-solid fa-chevron-right"></i></button>
@@ -79,49 +81,55 @@
                     <div class="view-more">
                         <div class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus vero tenetur asperiores impedit vitae. Nemo ex optio, saepe nostrum cupiditate esse culpa corrupti dolorum velit, eveniet recusandae dicta facere doloribus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis eius amet consequatur itaque perferendis id, aliquam similique explicabo? Totam nobis blanditiis, quos qui reiciendis minima?</div>
                         <div class="task-info">
-                            <div class="list"><div class="color"> Personal</div></div>
-                            <div class="subtasks"></div>
-                            <div class="date"></div>
-                            <div class="settings"></div>
+                            <div class="list"><div class="color"></div>Personal</div>
+                            <div class="subtasks"><div class="list-quantity">3</div> Subtasks</div>
+                            <div class="date"><i class="fa-solid fa-calendar-xmark"></i> 21-01-2024</div>
+                            <div class="settings"><i class="fa-solid fa-ellipsis"></i></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
             </div>
         </div>
     </main>
 
     <!-- Task form -->
-    <div class="task-form">
-        <div class="heading"><h2>Add New Task:</h2> <button class="close-taskform-btn"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="task-form hidden">
+        <div class="heading"><h2>Add New Task:</h2></div>
         
         <div class="form">
-            <input type="text" placeholder="Title" class="title">
-            <textarea class="description" placeholder="Description"></textarea>
+            <input type="text" placeholder="Title" class="titleInput">
+            <textarea placeholder="Description" class="descriptionInput"></textarea>
             
             <div class="options">
                 <div class="option">
                     <h3>List</h3> 
-                    <select>
+                    <select class="listSelector">
                         <option>Personal</option>
                         <option>Work</option>
                         <option>Lifestyle</option>
                     </select>
                 </div>
-                <div class="option"><h3>Due Date</h3> <input type="date"></div>
+                <div class="option"><h3>Due Date</h3> <input type="date" class="dateSelector"></div>
             </div>
 
             <div class="subtasks">
                 <h2>Subtasks:</h2>
-                <div class="add-subtask"><i class="fa-solid fa-plus"></i> <input type="text" placeholder="Add New Subtask"></div>
+                <div class="add-subtask"><i class="fa-solid fa-plus"></i> <input type="text" placeholder="Add New Subtask" class="add-subtask-input"></div>
+                <div class="subtasks-list">
+                    <ul>
+                    </ul>
+                </div>
             </div>
 
             <div class="buttons">
-                <button>Cancel</button>
-                <button>Add Task</button>
+                <button class="cancel-btn">Cancel</button>
+                <button class="confirm-task-btn">Confirm</button>
             </div>
 
         </div>
     </div>
+
 
 
 
