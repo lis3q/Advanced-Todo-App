@@ -15,7 +15,7 @@
 
 body {
     display: flex;
-    overflow: auto;
+    overflow: hidden;
     background: var(--white);
 }
 
@@ -424,7 +424,7 @@ body {
     top: 0;
     right: 0;
     width: 400px;
-    height: 100vh;
+    max-height: 100vh;
     background: var(--sidebarBg);
     transition: .3s ease-in-out;
 }
@@ -535,8 +535,13 @@ body {
 .task-form .add-subtask input {
     padding-left: 38px !important;
 }
-.task-form .subtasks-list {
+.task-form .subtasks-list ul {
     margin: 30px;
+    overflow-y: scroll !important;
+    max-height: 230px;
+}
+.task-form .subtasks-list ul::-webkit-scrollbar {
+    display: none;
 }
 .task-form .subtasks-list li {
     font-family: 'Open Sans' sans-serif;
@@ -552,10 +557,11 @@ body {
     left: 0;
     padding: 0 30px;
     width: 100%;
+    z-index: 20;
 }
 .task-form .buttons button {
     text-align: left;
-    background: none;
+    background: var(--circle);
     outline: none;
     border: 1px solid var(--stroke);
     color: var(--text);
@@ -574,9 +580,6 @@ body {
 }
 .task-form .buttons button:nth-child(2):hover {
     background: #ff9812;
-}
-.task-form .buttons button:nth-child(1):hover {
-    background: var(--circle);
 }
 
 

@@ -74,11 +74,12 @@ confirmTaskBtn.addEventListener("click", () => {
             </div>
         </div>
         `
+
+        changeQuantity();
         viewMore();
         clearInputFields();
         openTaskSettings();
-        cancelBtn();
-        deleteTask();
+        deleteTask(list, document.querySelector(".task-info"));
     }
 
 })
@@ -116,8 +117,6 @@ subtaskInput.addEventListener("keyup", (ev) => {
     }
 })
 
-let yourList = [];
-
 // Adding new list to sidebar
 const addNewListPopup = document.querySelector(".add-new-list-popup");
 const addNewListBtn = document.querySelector(".add-new-list-btn");
@@ -143,7 +142,6 @@ addNewListBtn.addEventListener("click", () => {
                     <div class="list-quantity">0</div>
                 </div>
                 `
-                yourList.push(listNameSelectorValue);
                 updateListSelector();
             }
         }
@@ -161,13 +159,39 @@ const updateListSelector = () => {
 }
 
 // Removing task by clicking delete button
-const deleteTask = () => {
+const deleteTask = (list, name) => {
+    const listQuantity = document.querySelectorAll(".lists .list-quantity");
     const deleteTaskBtn = document.querySelectorAll(".delete-task-btn");
+    const listSelector = name.children[0].textContent;
+    const listName = list;
     deleteTaskBtn.forEach(btn => {
         btn.addEventListener("click", () => {
             const task = btn.parentElement.parentElement.parentElement.parentElement.parentElement;
             task.remove();
+            listQuantity.forEach(listqt => {
+                let quantity = parseInt(listqt.textContent);
+                console.log(listqt);
+                if (listName === listSelector) {
+                    quantity--;
+                    console.log(listqt);
+                    listqt.innerHTML = quantity;
+                }
+            })
         })
+    })
+}
+
+// Quantity system
+const changeQuantity = () => {
+    const listSelector = document.querySelector(".listSelector").value;
+    const listQuantity = document.querySelectorAll(".lists .list-quantity");
+    listQuantity.forEach(list => {
+        let quantity = parseInt(list.textContent);
+        const listName = list.previousElementSibling.textContent;
+        if (listName === listSelector) {
+            quantity++;
+            list.innerHTML = quantity;
+        }
     })
 }
 
