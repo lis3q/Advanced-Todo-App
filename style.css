@@ -383,10 +383,10 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 5px;
-    background: #ff3c3c;
     margin-right: 11px;
 }
 .tasks-area .task-info .subtasks {
+    position: relative;
     display: flex;
     align-items: center;
     color: var(--input);
@@ -402,6 +402,18 @@ body {
     text-align: center;
     line-height: 21px;
     margin-right: 11px;
+}
+.tasks-area .task-info .subtasks .subtasks-list-hover {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--sidebarBg);
+}
+.tasks-area .task-info .subtasks:hover .subtasks-list-hover {
+    display: block;
 }
 .tasks-area .task-info .date {
     color: var(--input);

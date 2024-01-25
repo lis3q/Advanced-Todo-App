@@ -3,6 +3,14 @@ const addNewTaskBtn = document.querySelector(".add-new-task-btn");
 const taskForm = document.querySelector(".task-form");
 const cancelBtn = document.querySelector(".cancel-btn");
 
+const duringQt = document.querySelector(".during-qt");
+const endedQt = document.querySelector(".ended-qt");
+const todayQt = document.querySelector(".today-qt");
+let listBackground = ["#ff3c3c", "#7676ff", "#7eff64"];
+let duringQuantity = 0;
+let endedQuantity = 0;
+let todayQuantity = 0;
+
 // Displaying taskform div
 addNewTaskBtn.addEventListener("click", () => {
     taskForm.classList.remove("hidden");
@@ -43,25 +51,40 @@ confirmTaskBtn.addEventListener("click", () => {
     let description = document.querySelector(".descriptionInput").value;
     let list = document.querySelector(".listSelector").value;
     let date = document.querySelector(".dateSelector").value;
+    let bg;
 
     if (title === "") {
         alert("Podaj tytuł");
     }
     else {
         const tasksDiv = document.querySelector(".tasks-area .tasks");
+
+        // List color function
+        let selectElement = document.querySelectorAll(".listSelector");
+        let optionNames = [...selectElement[0].options].map(o => o.text)
+        for (let i = 0; i < optionNames.length; i++) {
+            if (optionNames[i] == list) {
+                bg = listBackground[i];
+            }
+        }
+
         tasksDiv.innerHTML += 
         `    
         <div class="task">
             <div class="short">
-                <label><input type="checkbox" name="checkbox" value="${title}">${title}</label>
+                <label><input type="checkbox" class="task-chkbox" name="checkbox" value="${title}"><p>${title}</p></label>
                 <button class="view-more-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
     
             <div class="view-more">
                 <div class="description">${description}</div>
                 <div class="task-info">
-                    <div class="list"><div class="color"></div>${list}</div>
-                    <div class="subtasks"><div class="list-quantity">${subtasks.length}</div> Subtasks</div>
+                    <div class="list"><div class="color" style="background: ${bg}"></div>${list}</div>
+                    <div class="subtasks">
+                        <div class="list-quantity">${subtasks.length}</div> Subtasks
+                        <div class="subtasks-list-hover">
+                        </div>
+                    </div>
                     <div class="date"><i class="fa-solid fa-calendar-xmark"></i> ${date.split("-").reverse().join("-")}</div>
                     <div class="settings">
                         <i class="fa-solid fa-ellipsis"></i>
@@ -75,11 +98,36 @@ confirmTaskBtn.addEventListener("click", () => {
         </div>
         `
 
+        subtasks = [];
+        console.log(subtasks)
+
+        const todayDateCheck = year + "-" + ("0" + month).slice(-2) + "-" + ("0" + shortDay).slice(-2)
+        if (date === todayDateCheck) {
+            todayQuantity++;
+            todayQt.innerHTML = todayQuantity;
+        }
+
+        duringQuantity++;
+        duringQt.innerHTML = duringQuantity;
+
+        const taskChkbox = document.querySelectorAll(".task-chkbox");
+        taskChkbox.forEach(chkbox => {
+            chkbox.addEventListener("click", () => {
+                const taskName = chkbox.parentElement.children[1];
+                taskName.style.textDecoration = "line-through";
+                chkbox.disabled = true;
+                duringQuantity--;
+                endedQuantity++;
+                duringQt.innerHTML = duringQuantity;
+                endedQt.innerHTML = endedQuantity;
+            })
+        })
+
         changeQuantity();
         viewMore();
         clearInputFields();
         openTaskSettings();
-        deleteTask(list, document.querySelector(".task-info"));
+        deleteTask();
     }
 
 })
@@ -113,9 +161,12 @@ subtaskInput.addEventListener("keyup", (ev) => {
         const subtask = subtaskInput.value;
         subtaskList.innerHTML += `<li>${subtask}</li>`
         subtasks.push(subtask);
+        const subtasksList = document.querySelector(".subtasks-list-hover");
+        subtasksList.innerHTML += `<p>${subtask}</p>`
         document.querySelector(".add-subtask-input").value = "";
     }
 })
+
 
 // Adding new list to sidebar
 const addNewListPopup = document.querySelector(".add-new-list-popup");
@@ -142,39 +193,33 @@ addNewListBtn.addEventListener("click", () => {
                     <div class="list-quantity">0</div>
                 </div>
                 `
-                updateListSelector();
+
+                // updateListSelector();
+                listBackground.push(colorSelector);
+                
             }
         }
     })
 })
 
-// Updating select list tag
-const updateListSelector = () => {
-    const listSelector = document.querySelector(".listSelector");
-    for (let i = 0; i < yourList.length; i++) {
-        listSelector.innerHTML += `
-            <option>${yourList[i]}</option>
-        `
-    }
-}
-
-// Removing task by clicking delete button
-const deleteTask = (list, name) => {
+// Removing task by clicking delete button (includes function for subtracting quantities)
+const deleteTask = () => {
     const listQuantity = document.querySelectorAll(".lists .list-quantity");
     const deleteTaskBtn = document.querySelectorAll(".delete-task-btn");
-    const listSelector = name.children[0].textContent;
-    const listName = list;
+
     deleteTaskBtn.forEach(btn => {
         btn.addEventListener("click", () => {
             const task = btn.parentElement.parentElement.parentElement.parentElement.parentElement;
+            const listName = btn.parentElement.parentElement.parentElement.children[0].textContent;
+            console.log(listName);
             task.remove();
-            listQuantity.forEach(listqt => {
-                let quantity = parseInt(listqt.textContent);
-                console.log(listqt);
-                if (listName === listSelector) {
+
+            listQuantity.forEach(list => {
+                let quantity = parseInt(list.textContent);
+                const sidebarListName = list.previousElementSibling.textContent;
+                if (listName === sidebarListName) {
                     quantity--;
-                    console.log(listqt);
-                    listqt.innerHTML = quantity;
+                    list.innerHTML = quantity;
                 }
             })
         })
