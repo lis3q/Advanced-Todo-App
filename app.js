@@ -2,11 +2,13 @@
 const addNewTaskBtn = document.querySelector(".add-new-task-btn");
 const taskForm = document.querySelector(".task-form");
 const cancelBtn = document.querySelector(".cancel-btn");
+const listSelector = document.querySelector(".listSelector");
 
 const duringQt = document.querySelector(".during-qt");
 const endedQt = document.querySelector(".ended-qt");
 const todayQt = document.querySelector(".today-qt");
 let listBackground = ["#ff3c3c", "#7676ff", "#7eff64"];
+let listNames = ["Personal", "Work", "Lifestyle"];
 let duringQuantity = 0;
 let endedQuantity = 0;
 let todayQuantity = 0;
@@ -57,6 +59,7 @@ confirmTaskBtn.addEventListener("click", () => {
         alert("Podaj tytuł");
     }
     else {
+        const todayDateCheck = year + "-" + ("0" + month).slice(-2) + "-" + ("0" + shortDay).slice(-2)
         const tasksDiv = document.querySelector(".tasks-area .tasks");
 
         // List color function
@@ -66,6 +69,10 @@ confirmTaskBtn.addEventListener("click", () => {
             if (optionNames[i] == list) {
                 bg = listBackground[i];
             }
+        }
+
+        if (date == "") {
+            date = todayDateCheck;
         }
 
         tasksDiv.innerHTML += 
@@ -99,9 +106,7 @@ confirmTaskBtn.addEventListener("click", () => {
         `
 
         subtasks = [];
-        console.log(subtasks)
 
-        const todayDateCheck = year + "-" + ("0" + month).slice(-2) + "-" + ("0" + shortDay).slice(-2)
         if (date === todayDateCheck) {
             todayQuantity++;
             todayQt.innerHTML = todayQuantity;
@@ -184,6 +189,8 @@ addNewListBtn.addEventListener("click", () => {
                 alert("Podaj nazwę listy!");
             }
             else {
+                document.querySelector(".colorSelector").value = "#000000";
+                document.querySelector(".listnameSelector").value = "";
                 addNewListPopup.classList.remove("active");
                 lists.innerHTML += 
                 `
@@ -194,8 +201,9 @@ addNewListBtn.addEventListener("click", () => {
                 </div>
                 `
 
-                // updateListSelector();
                 listBackground.push(colorSelector);
+                listNames.push(listNameSelectorValue);
+                listSelector.innerHTML += `<option>${listNames.slice(-1)}</option>`;
                 
             }
         }
@@ -211,7 +219,6 @@ const deleteTask = () => {
         btn.addEventListener("click", () => {
             const task = btn.parentElement.parentElement.parentElement.parentElement.parentElement;
             const listName = btn.parentElement.parentElement.parentElement.children[0].textContent;
-            console.log(listName);
             task.remove();
 
             listQuantity.forEach(list => {

@@ -29,6 +29,7 @@ body {
     width: 340px;
     height: 100vh;
     padding: 30px;
+    overflow: hidden;
 }
 
 /* Sidebar heading */
@@ -81,6 +82,12 @@ body {
 .sidebar .lists,
 .sidebar .tasks-ctg {
     margin-top: 34px;
+    height: 160px;
+    overflow: scroll;
+}
+.sidebar .lists::-webkit-scrollbar,
+.sidebar .tasks-ctg::-webkit-scrollbar {
+    display: none;
 }
 .sidebar .lists h3,
 .sidebar .tasks-ctg h3 {
@@ -148,6 +155,7 @@ body {
 .sidebar .tasks-ctg .task-ctg-name {
     font-size: 1em;
     color: var(--text);
+    text-transform: capitalize;
 }
 .sidebar .lists .list .list-quantity,
 .sidebar .tasks-ctg .task-ctg-quantity {
@@ -226,7 +234,7 @@ body {
 /* Main, tasks-area */
 .tasks-area {
     padding: 30px;
-    width: 125vh;
+    width: calc(100vw - 340px - 400px);
     min-height: 100vh;
     background: var(--white);
     position: relative;
@@ -523,6 +531,7 @@ body {
     background: var(--circle);
     border: 1px solid var(--stroke);
     color: var(--input);
+    text-transform: capitalize;
 }
 /* Task-form, form, subtasks */
 .task-form .subtasks {
