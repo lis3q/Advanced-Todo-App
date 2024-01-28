@@ -16,6 +16,7 @@ let todayQuantity = 0;
 // Displaying taskform div
 addNewTaskBtn.addEventListener("click", () => {
     taskForm.classList.remove("hidden");
+    localStorage.getItem("tasks");
 })
 
 // Hiding taskform div
@@ -89,8 +90,7 @@ confirmTaskBtn.addEventListener("click", () => {
                     <div class="list"><div class="color" style="background: ${bg}"></div>${list}</div>
                     <div class="subtasks">
                         <div class="list-quantity">${subtasks.length}</div> Subtasks
-                        <div class="subtasks-list-hover">
-                        </div>
+                        <div class="subtasks-list-hover"></div>
                     </div>
                     <div class="date"><i class="fa-solid fa-calendar-xmark"></i> ${date.split("-").reverse().join("-")}</div>
                     <div class="settings">
@@ -104,8 +104,6 @@ confirmTaskBtn.addEventListener("click", () => {
             </div>
         </div>
         `
-
-        subtasks = [];
 
         if (date === todayDateCheck) {
             todayQuantity++;
@@ -133,6 +131,7 @@ confirmTaskBtn.addEventListener("click", () => {
         clearInputFields();
         openTaskSettings();
         deleteTask();
+        showSubtask();
     }
 
 })
@@ -158,19 +157,23 @@ const openTaskSettings = () => {
 }
 
 // Adding subtasks to list
-let subtaskInput = document.querySelector(".add-subtask-input");
 let subtasks = [];
+const subtaskInput = document.querySelector(".add-subtask-input");
 subtaskInput.addEventListener("keyup", (ev) => {
     if (ev.key === "Enter") {
-        let subtaskList = document.querySelector(".subtasks-list ul");
         const subtask = subtaskInput.value;
+        let subtaskList = document.querySelector(".subtasks-list ul");
         subtaskList.innerHTML += `<li>${subtask}</li>`
         subtasks.push(subtask);
-        const subtasksList = document.querySelector(".subtasks-list-hover");
-        subtasksList.innerHTML += `<p>${subtask}</p>`
         document.querySelector(".add-subtask-input").value = "";
     }
 })
+
+const showSubtask = () => {
+    const subtasksList = document.querySelector(".subtasks-list-hover");
+    subtasksList.innerHTML += `<p>${subtasks}</p>`
+    subtasks = [];
+}
 
 
 // Adding new list to sidebar

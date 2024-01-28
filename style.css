@@ -557,7 +557,7 @@ body {
     padding-left: 38px !important;
 }
 .task-form .subtasks-list ul {
-    margin: 30px;
+    margin: 12px 0;
     overflow-y: scroll !important;
     max-height: 230px;
 }
@@ -565,8 +565,9 @@ body {
     display: none;
 }
 .task-form .subtasks-list li {
+    display: inline-block;
     font-family: 'Open Sans' sans-serif;
-    margin: 4px 0;
+    margin: 4px 10px;
     color: var(--black);
 }
 /* task-form, buttons */
@@ -624,13 +625,17 @@ body {
     .tasks-area .heading {
         display: flex;
         align-items: center;
-        gap: 50px;
+        gap: 90px;
     }
     .tasks-area .heading .date {
         display: none;
     }
     .tasks-area .heading .mobileMenu {
         display: block;
+        background: none;
+        border: none;
+        font-size: 1.4em;
+        color: var(--black);
     }
     .tasks-area .heading h1 {
         text-align: center;
@@ -640,7 +645,7 @@ body {
         bottom: 5%;
         left: 50%;
         transform: translate(-50%, -5%);
-        width: 170px;
+        margin: 0;
     }
     .tasks-area .view-more .task-info {
         display: grid;
